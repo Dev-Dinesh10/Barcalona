@@ -20,10 +20,35 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.dinesh_dev49.project"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+              "cameraPermission": "Allow Barça Memories to access your camera to capture your favorite football moments."
+            }
+          ],
+          [
+            "expo-media-library",
+            {
+              "photosPermission": "Allow Barça Memories to access your photo library to save your captured memories.",
+              "savePhotosPermission": "Allow Barça Memories to save photos to your gallery.",
+              "isAccessMediaLocationEnabled": true
+            }
+          ],
+          [
+            "expo-location",
+            {
+              "locationWhenInUsePermission": "Allow Barça Memories to access your location to capture your favorite football moments.",
+              "locationAlwaysPermission": "Allow Barça Memories to access your location to capture your favorite football moments."
+            }
+          ]
+        ]
+      }
     }
-  }
-}
+
