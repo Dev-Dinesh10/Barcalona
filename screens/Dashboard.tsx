@@ -23,17 +23,15 @@ type RootStackParamList = {
 };
 
 const Dashboard = ({ navigation }: any) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // ✅ Permanently set to dark mode
+  const isDarkMode = true;
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
+  // ✅ Dark mode theme configuration
   const theme = {
-    background: isDarkMode ? '#121212' : '#F5F5F5',
-    cardBackground: isDarkMode ? '#1E1E1E' : '#fff',
-    text: isDarkMode ? '#FFFFFF' : '#333',
-    subText: isDarkMode ? '#B0B0B0' : '#666',
+    background: '#121212',
+    cardBackground: '#1E1E1E',
+    text: '#FFFFFF',
+    subText: '#B0B0B0',
     header: '#A50044',
     accent: '#FFD700',
     barcelona: '#A50044',
@@ -41,9 +39,9 @@ const Dashboard = ({ navigation }: any) => {
     success: '#4CAF50',
     warning: '#FF9800',
     danger: '#F44336',
-    statCardBg: isDarkMode ? '#2A2A2A' : '#F8F9FA',
-    borderColor: isDarkMode ? '#333' : '#E9ECEF',
-    newsCardBg: isDarkMode ? '#2A2A2A' : '#F8F9FA',
+    statCardBg: '#2A2A2A',
+    borderColor: '#333',
+    newsCardBg: '#2A2A2A',
   };
 
   const quickStats = [
@@ -115,18 +113,7 @@ const Dashboard = ({ navigation }: any) => {
       flexDirection: 'row',
       alignItems: 'center',
     },
-    themeToggle: {
-      width: 40,
-      height: 40,
-      borderRadius: 20,
-      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginRight: 10,
-    },
-    themeIcon: {
-      fontSize: 20,
-    },
+    // ✅ Removed theme toggle button styles
     profileButton: {
       width: 40,
       height: 40,
@@ -379,7 +366,7 @@ const Dashboard = ({ navigation }: any) => {
   return (
     <>
       <StatusBar 
-        barStyle={isDarkMode ? "light-content" : "light-content"} 
+        barStyle="light-content"
         backgroundColor="#A50044" 
       />
       <LinearGradient
@@ -402,10 +389,7 @@ const Dashboard = ({ navigation }: any) => {
               <Text style={styles.dateText}>Saturday, August 16, 2025</Text>
             </View>
             <View style={styles.headerButtons}>
-              <TouchableOpacity style={styles.themeToggle} onPress={toggleTheme}>
-                <Text style={styles.themeIcon}>{isDarkMode ? '☀️' : '🌙'}</Text>
-              </TouchableOpacity>
-              {/* ✅ Updated Profile Button with Navigation */}
+              {/* ✅ Removed theme toggle button completely */}
               <TouchableOpacity 
                 style={styles.profileButton}
                 onPress={() => navigation.navigate('Profile')}

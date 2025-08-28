@@ -228,7 +228,7 @@ export default function App() {
       if (video?.uri) {
         setVideoUri(video.uri);
         const locationData = await getCurrentLocation();
-        setCurrentLocation(locationData);
+        setCurrentLocation(locationData as any);
         if (mediaLibraryPermission?.granted) {
           await MediaLibrary.createAssetAsync(video.uri);
         }
@@ -517,7 +517,7 @@ export default function App() {
         setPhoto(data.uri);
 
         const locationData = await locationPromise;
-        setCurrentLocation(locationData);
+        setCurrentLocation(locationData as any);
         await triggerHapticFeedback("success");
 
         if (mediaLibraryPermission?.granted) {
@@ -833,7 +833,7 @@ export default function App() {
                     <Video
                       source={{ uri: selectedMemory.uri }}
                       style={styles.sharePreviewImage}
-                      resizeMode="cover"
+                      resizeMode={"cover" as any}
                       shouldPlay={false}
                       useNativeControls={false}
                     />
@@ -899,7 +899,7 @@ export default function App() {
                         activeOpacity={0.8}
                       >
                         <LinearGradient
-                          colors={platform.gradient}
+                          colors={platform.gradient as any}
                           style={styles.socialPlatformGradient}
                           start={{ x: 0, y: 0 }}
                           end={{ x: 1, y: 1 }}
@@ -1058,7 +1058,7 @@ export default function App() {
                   source={{ uri: videoUri! }}
                   style={styles.previewImage}
                   useNativeControls
-                  resizeMode="cover"
+                  resizeMode={"cover" as any}
                   shouldPlay={false}
                 />
               )}
@@ -1262,7 +1262,7 @@ export default function App() {
               style={styles.camera}
               facing={facing}
               flash={flashMode}
-              mode={captureMode}  // CRITICAL: Add this line
+              mode={captureMode as any}  // CRITICAL: Add this line
               onCameraReady={onCameraReady}
             >
               {/* Recording indicator */}
@@ -1452,7 +1452,7 @@ export default function App() {
                             <Video
                               source={{ uri: memory.uri }}
                               style={styles.memoryImage}
-                              resizeMode="cover"
+                              resizeMode={"cover" as any}
                               shouldPlay={false}
                               useNativeControls={false}
                             />

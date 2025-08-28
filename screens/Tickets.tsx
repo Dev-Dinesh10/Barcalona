@@ -262,44 +262,44 @@ const TicketScreen = ({ navigation }: any) => {
   };
 
   // ✅ FIXED: Test notification function with proper trigger format
-  const sendTestNotification = async () => {
-    if (notificationPermission !== 'granted') {
-      Alert.alert(
-        'Notifications Disabled', 
-        'Please enable notifications in your device settings to receive match updates.'
-      );
-      return;
-    }
+  // const sendTestNotification = async () => {
+  //   if (notificationPermission !== 'granted') {
+  //     Alert.alert(
+  //       'Notifications Disabled', 
+  //       'Please enable notifications in your device settings to receive match updates.'
+  //     );
+  //     return;
+  //   }
 
-    try {
-      await Notifications.scheduleNotificationAsync({
-        content: {
-          title: '🧪 Test Notification',
-          body: 'This is a test from your Barça app! Put the app in background to see it.',
-          data: { type: 'test' },
-          sound: 'default',
-        },
-        // ✅ FIXED: Use proper trigger format
-        trigger: {
-          type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-          seconds: 3,
-        },
-      });
+  //   try {
+  //     await Notifications.scheduleNotificationAsync({
+  //       content: {
+  //         title: '🧪 Test Notification',
+  //         body: 'This is a test from your Barça app! Put the app in background to see it.',
+  //         data: { type: 'test' },
+  //         sound: 'default',
+  //       },
+  //       // ✅ FIXED: Use proper trigger format
+  //       trigger: {
+  //         type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+  //         seconds: 3,
+  //       },
+  //     });
       
-      try {
-        if (Haptics?.impactAsync) {
-          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-        }
-      } catch (hapticError) {
-        console.log('Haptic not available');
-      }
+  //     try {
+  //       if (Haptics?.impactAsync) {
+  //         await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+  //       }
+  //     } catch (hapticError) {
+  //       console.log('Haptic not available');
+  //     }
       
-      Alert.alert('Test Scheduled', 'Notification will appear in 3 seconds! Put app in background to see it.');
-    } catch (error : any) {
-      console.error('Error sending test notification:', error);
-      Alert.alert('Test Failed', 'Could not send test notification: ' + error.message);
-    }
-  };
+  //     Alert.alert('Test Scheduled', 'Notification will appear in 3 seconds! Put app in background to see it.');
+  //   } catch (error : any) {
+  //     console.error('Error sending test notification:', error);
+  //     Alert.alert('Test Failed', 'Could not send test notification: ' + error.message);
+  //   }
+  // };
 
   const handleHome = () => {
     if (navigation?.navigate) {
@@ -344,14 +344,14 @@ const TicketScreen = ({ navigation }: any) => {
             <Text style={styles.headerSubtitle}>Official Ticket Booking</Text>
           </View>
 
-          {__DEV__ && (
+          {/* {__DEV__ && (
             <TouchableOpacity 
               style={styles.testButton} 
               onPress={sendTestNotification}
             >
               <Text style={styles.testButtonText}>🧪</Text>
             </TouchableOpacity>
-          )}
+          )} */}
         </View>
       </LinearGradient>
 

@@ -12,6 +12,7 @@ import {
   Modal,
   Animated,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 
@@ -31,7 +32,8 @@ interface Player {
 }
 
 const SquadPlayers = ({ navigation }: any) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // ✅ Permanently set to dark mode
+  const isDarkMode = true;
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const scrollY = useRef(new Animated.Value(0)).current;
@@ -45,24 +47,21 @@ const SquadPlayers = ({ navigation }: any) => {
     }).start();
   }, []);
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
+  // ✅ Dark mode theme configuration
   const theme = {
     primary: '#A50044',
     secondary: '#004D98',
     accent: '#FFD700',
-    background: isDarkMode ? '#0a0a0a' : '#f8f9fa',
-    cardBackground: isDarkMode ? '#1a1a1a' : '#ffffff',
+    background: '#0a0a0a',
+    cardBackground: '#1a1a1a',
     headerGradient: ['#A50044', '#004D98'],
-    cardGradient: isDarkMode ? ['#1a1a1a', '#2a2a2a'] : ['#ffffff', '#f8f9fa'],
-    text: isDarkMode ? '#ffffff' : '#2c3e50',
-    subText: isDarkMode ? '#b0b0b0' : '#6c757d',
-    statCardBg: isDarkMode ? 'rgba(165, 0, 68, 0.1)' : 'rgba(165, 0, 68, 0.05)',
-    borderColor: isDarkMode ? '#333' : '#e9ecef',
-    shadowColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-    modalBg: isDarkMode ? 'rgba(0,0,0,0.95)' : 'rgba(0,0,0,0.9)',
+    cardGradient: ['#1a1a1a', '#2a2a2a'],
+    text: '#ffffff',
+    subText: '#b0b0b0',
+    statCardBg: 'rgba(165, 0, 68, 0.1)',
+    borderColor: '#333',
+    shadowColor: 'rgba(255, 255, 255, 0.1)',
+    modalBg: 'rgba(0,0,0,0.95)',
   };
 
   const players: Player[] = [
@@ -358,7 +357,7 @@ const SquadPlayers = ({ navigation }: any) => {
             <ScrollView showsVerticalScrollIndicator={false}>
               {/* Modal Header */}
               <View style={[styles.modalHeader, { 
-                background: `linear-gradient(135deg, ${getPositionColor(selectedPlayer.position)[0]}, ${getPositionColor(selectedPlayer.position)[1]})`
+                // background: `linear-gradient(135deg, ${getPositionColor(selectedPlayer.position)[0]}, ${getPositionColor(selectedPlayer.position)[1]})`
               }]}>
                 <TouchableOpacity 
                   style={styles.closeButton}
@@ -430,7 +429,7 @@ const SquadPlayers = ({ navigation }: any) => {
     },
     header: {
       height: 120,
-      background: `linear-gradient(135deg, ${theme.headerGradient[0]}, ${theme.headerGradient[1]})`,
+      backgroundColor: theme.primary,
       paddingTop: 50,
       paddingHorizontal: 20,
       paddingBottom: 20,
@@ -456,12 +455,6 @@ const SquadPlayers = ({ navigation }: any) => {
       backgroundColor: 'rgba(255, 255, 255, 0.2)',
       justifyContent: 'center',
       alignItems: 'center',
-      backdropFilter: 'blur(10px)',
-    },
-    backButtonText: {
-      fontSize: 20,
-      color: '#fff',
-      fontWeight: 'bold',
     },
     headerCenter: {
       alignItems: 'center',
@@ -482,17 +475,7 @@ const SquadPlayers = ({ navigation }: any) => {
       marginTop: 4,
       opacity: 0.9,
     },
-    themeToggle: {
-      width: 44,
-      height: 44,
-      borderRadius: 22,
-      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    themeIcon: {
-      fontSize: 22,
-    },
+    // ✅ Removed theme toggle styles
     squadInfo: {
       margin: 20,
       padding: 20,
@@ -715,6 +698,7 @@ const SquadPlayers = ({ navigation }: any) => {
       alignItems: 'center',
       padding: 30,
       position: 'relative',
+      backgroundColor: theme.primary,
     },
     closeButton: {
       position: 'absolute',
@@ -847,14 +831,14 @@ const SquadPlayers = ({ navigation }: any) => {
         backgroundColor={theme.primary}
       />
       <View style={styles.container}>
-        {/* Enhanced Header with Gradient */}
+        {/* Enhanced Header */}
         <View style={styles.header}>
           <View style={styles.headerPattern} />
           <TouchableOpacity 
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
-            <Text style={styles.backButtonText}>←</Text>
+            <Ionicons name="arrow-back" size={24} color="#fff" />
           </TouchableOpacity>
           
           <View style={styles.headerCenter}>
@@ -862,9 +846,8 @@ const SquadPlayers = ({ navigation }: any) => {
             <Text style={styles.headerSubtitle}>FC Barcelona 2024/25</Text>
           </View>
           
-          <TouchableOpacity style={styles.themeToggle} onPress={toggleTheme}>
-            <Text style={styles.themeIcon}>{isDarkMode ? '☀️' : '🌙'}</Text>
-          </TouchableOpacity>
+          {/* ✅ Removed theme toggle button completely */}
+          <View style={{ width: 44 }} />
         </View>
 
         {/* Squad Information Card */}
