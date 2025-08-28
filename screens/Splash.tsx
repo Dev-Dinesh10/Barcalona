@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'radial-gradient(circle at 30% 20%, rgba(165, 0, 68, 0.3) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(0, 77, 152, 0.2) 0%, transparent 50%)',
+    // background : 'radial-gradient(circle at 30% 20%, rgba(165, 0, 68, 0.3) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(0, 77, 152, 0.2) 0%, transparent 50%)',
   },
   decorativeCircle1: {
     position: 'absolute',

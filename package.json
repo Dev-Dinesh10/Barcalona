@@ -30,6 +30,7 @@
     "expo-media-library": "~17.1.7",
     "expo-notifications": "^0.31.4",
     "expo-sharing": "^13.1.5",
+    "expo-speech": "~13.1.7",
     "expo-status-bar": "~2.2.3",
     "nativewind": "^4.1.23",
     "react": "19.0.0",

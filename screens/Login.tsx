@@ -16,16 +16,16 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
+// ❌ Remove this line - don't import Register component here
+// import Register from './Register';
 
 const { width, height } = Dimensions.get('window');
-
-// Responsive breakpoints
 const isTablet = width > 768;
-const isLargeScreen = width > 1024;
 
 type RootStackParamList = {
   Home: undefined;
   Login: undefined;
+  Register: undefined; // ✅ Add Register to type
   Dashboard: undefined;
   Main: undefined;
 };
@@ -57,13 +57,6 @@ const Login = ({ navigation }: Props) => {
     success: '#10B981',
     warning: '#F59E0B',
     error: '#EF4444',
-    gradient: {
-      primary: ['#A50044', '#7A0033', '#004D98'],
-      secondary: ['#FFED02', '#FFD700', '#FDB913'],
-      surface: ['#FFFFFF', '#F8F9FA'],
-      input: ['#F8F9FA', '#FFFFFF'],
-      button: ['#FFD700', '#FFED02', '#FDB913'],
-    }
   };
 
   const handleLogin = () => {
@@ -97,6 +90,11 @@ const Login = ({ navigation }: Props) => {
     }, 1500); 
   };
 
+  // ✅ Correct function to navigate to Register
+  const handleRegister = () => {
+    navigation.navigate('Register');
+  };
+
   const fillDemoCredentials = () => {
     setEmail('test@example.com');
     setPassword('password123');
@@ -108,7 +106,9 @@ const Login = ({ navigation }: Props) => {
     { name: 'Apple', icon: '🍎', color: '#000000' },
   ];
 
+  // ... (rest of your styles remain the same)
   const styles = StyleSheet.create({
+    // ... all your existing styles ...
     gradientBg: {
       flex: 1,
     },
@@ -224,12 +224,6 @@ const Login = ({ navigation }: Props) => {
       shadowOpacity: 0.05,
       shadowRadius: 8,
       elevation: 2,
-    },
-    inputFocused: {
-      borderColor: theme.primary,
-      shadowColor: theme.primary,
-      shadowOpacity: 0.1,
-      shadowRadius: 12,
     },
     inputIcon: {
       position: 'absolute',
@@ -508,26 +502,6 @@ const Login = ({ navigation }: Props) => {
       bottom: '20%',
       left: '8%',
     },
-    errorContainer: {
-      backgroundColor: 'rgba(239, 68, 68, 0.1)',
-      borderWidth: 1,
-      borderColor: 'rgba(239, 68, 68, 0.3)',
-      borderRadius: 12,
-      padding: 16,
-      marginBottom: 20,
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    errorIcon: {
-      fontSize: 20,
-      marginRight: 12,
-    },
-    errorText: {
-      flex: 1,
-      fontSize: 14,
-      color: theme.error,
-      fontWeight: '500',
-    },
   });
 
   return (
@@ -587,26 +561,16 @@ const Login = ({ navigation }: Props) => {
                   <View style={styles.inputGroup}>
                     <Text style={styles.inputLabel}>Email Address</Text>
                     <View style={styles.inputWrapper}>
-                      <LinearGradient
-                        colors={["#F8F9FA", "#FFFFFF"]}
+                      <TextInput
                         style={styles.input}
-                      >
-                        <TextInput
-                          style={{ 
-                            flex: 1, 
-                            fontSize: isTablet ? 16 : 15,
-                            color: theme.text,
-                            fontWeight: '500'
-                          }}
-                          placeholder="Enter your email address"
-                          value={email}
-                          onChangeText={setEmail}
-                          keyboardType="email-address"
-                          autoCapitalize="none"
-                          autoComplete="email"
-                          placeholderTextColor={theme.textMuted}
-                        />
-                      </LinearGradient>
+                        placeholder="Enter your email address"
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        autoComplete="email"
+                        placeholderTextColor={theme.textMuted}
+                      />
                       <View style={styles.inputIcon}>
                         <Text style={styles.inputIconText}>📧</Text>
                       </View>
@@ -617,26 +581,16 @@ const Login = ({ navigation }: Props) => {
                   <View style={styles.inputGroup}>
                     <Text style={styles.inputLabel}>Password</Text>
                     <View style={styles.inputWrapper}>
-                      <LinearGradient
-                        colors={["#F8F9FA", "#FFFFFF"]}
+                      <TextInput
                         style={styles.input}
-                      >
-                        <TextInput
-                          style={{ 
-                            flex: 1, 
-                            fontSize: isTablet ? 16 : 15,
-                            color: theme.text,
-                            fontWeight: '500'
-                          }}
-                          placeholder="Enter your password"
-                          value={password}
-                          onChangeText={setPassword}
-                          secureTextEntry={!showPassword}
-                          autoCapitalize="none"
-                          autoComplete="password"
-                          placeholderTextColor={theme.textMuted}
-                        />
-                      </LinearGradient>
+                        placeholder="Enter your password"
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry={!showPassword}
+                        autoCapitalize="none"
+                        autoComplete="password"
+                        placeholderTextColor={theme.textMuted}
+                      />
                       <TouchableOpacity 
                         style={styles.passwordToggle}
                         onPress={() => setShowPassword(!showPassword)}
@@ -736,10 +690,10 @@ const Login = ({ navigation }: Props) => {
                     </View>
                   </View>
 
-                  {/* Sign Up Link */}
+                  {/* ✅ CORRECTED Sign Up Link */}
                   <View style={styles.signupContainer}>
                     <Text style={styles.signupText}>New to Barcelona? </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleRegister}>
                       <Text style={styles.signupLink}>Create Account</Text>
                     </TouchableOpacity>
                   </View>

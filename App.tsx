@@ -18,6 +18,8 @@ import News from "./screens/News";
 import FanZone from "./screens/FanZone";
 import Statistics from "./screens/Statistics";
 import Profile from "./screens/Profile";
+import Register from "./screens/Register";
+import Translator from "./screens/Translator";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -154,7 +156,7 @@ function MainDrawer() {
           ),
         }}
       />
-      <Drawer.Screen 
+      {/* <Drawer.Screen 
         name="Tickets" 
         component={Tickets}
         options={{
@@ -163,8 +165,8 @@ function MainDrawer() {
             <Ionicons name={focused ? "pricetag" : "pricetag-outline"} size={size} color={color} />
           ),
         }}
-      />
-      <Drawer.Screen 
+      /> */}
+      {/* <Drawer.Screen 
         name="Matches" 
         component={Matches}
         options={{
@@ -173,8 +175,8 @@ function MainDrawer() {
             <Ionicons name={focused ? "football" : "football-outline"} size={size} color={color} />
           ),
         }}
-      />
-      <Drawer.Screen 
+      /> */}
+      {/* <Drawer.Screen 
         name="SquadPlayers" 
         component={SquadPlayers}
         options={{
@@ -183,7 +185,7 @@ function MainDrawer() {
             <Ionicons name={focused ? "people" : "people-outline"} size={size} color={color} />
           ),
         }}
-      />
+      /> */}
       <Drawer.Screen 
         name="Camara" 
         component={Camara}
@@ -200,7 +202,17 @@ function MainDrawer() {
         options={{
           title: "News & Updates",
           drawerIcon: ({ focused, size, color }) => (
-            <Ionicons name={focused ? "home" : "home-outline"} size={size} color={color} />
+            <Ionicons name={focused ?  "newspaper" : "newspaper-outline"} size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen 
+        name="Translator" 
+        component={Translator}
+        options={{
+          title: "Translator",
+          drawerIcon: ({ focused, size, color }) => (
+            <Ionicons name={focused ?  "chatbubble" : "chatbubble-outline"} size={size} color={color} />
           ),
         }}
       />
@@ -225,6 +237,7 @@ const App = () => {
         <Stack.Screen name="FanZone" component={FanZone} />
         <Stack.Screen name="Statistics" component={Statistics} />
         <Stack.Screen name="Profile" component={Profile}/>
+        <Stack.Screen name="Register" component={Register}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
